@@ -1,0 +1,12 @@
+# Ignore node_modules directory
+node_modules
+
+# Ignore .env files (if applicable)
+.env
+
+# Ignore build directories (for Next.js or other projects)
+.next
+dist
+
+# Ignore log files
+*.log
