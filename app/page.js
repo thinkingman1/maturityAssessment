@@ -30,44 +30,50 @@ export default function Home() {
   };
 
   return (
-    <main className="container mx-auto p-4 font-sans relative">
+    <main style={{fontFamily: 'Arial, sans-serif', maxWidth: '800px', margin: '0 auto', padding: '20px'}}>
       <ProgressBar progress={progress} />
-      <h1 className="text-3xl font-bold mb-6 mt-12" style={{fontFamily: 'Arial, sans-serif'}}>Maturity Model Assessment</h1>
+      <h1 style={{fontSize: '24px', fontWeight: 'bold', marginBottom: '20px', marginTop: '48px'}}>Maturity Model Assessment</h1>
       
       {allQuestions.length > 0 ? (
         <form onSubmit={handleSubmit}>
           {allQuestions.map((q, questionIndex) => (
-            <div key={questionIndex} className="mb-8">
-              <p className="text-lg mb-4" style={{fontWeight: 700, fontFamily: 'Arial, sans-serif'}}>
+            <div key={questionIndex} style={{marginBottom: '32px'}}>
+              <p style={{fontSize: '18px', fontWeight: 'bold', marginBottom: '16px'}}>
                 {questionIndex + 1}. {q.question}
               </p>
-              <div className="space-y-2 ml-6">
+              <div style={{display: 'flex', flexDirection: 'column', gap: '8px'}}>
                 {q.options.map((option, optionIndex) => (
-                  <div key={optionIndex} className="flex items-start">
-                    <input
-                      type="radio"
-                      id={`question-${questionIndex}-option-${optionIndex}`}
-                      name={`question-${questionIndex}`}
-                      value={option.score}
-                      onChange={() => handleOptionSelect(questionIndex, option.score)}
-                      className="mt-1 mr-3"
-                    />
-                    <label 
-                      htmlFor={`question-${questionIndex}-option-${optionIndex}`}
-                      className="cursor-pointer"
-                      style={{fontFamily: 'Arial, sans-serif'}}
-                    >
-                      {option.label}
-                    </label>
-                  </div>
+                  <button 
+                    key={optionIndex}
+                    type="button"
+                    style={{
+                      width: '100%',
+                      textAlign: 'left',
+                      padding: '12px',
+                      borderRadius: '8px',
+                      cursor: 'pointer',
+                      transition: 'background-color 0.3s',
+                      backgroundColor: scores[questionIndex] === option.score ? '#3B82F6' : '#F3F4F6',
+                      color: scores[questionIndex] === option.score ? 'white' : 'black',
+                    }}
+                    onClick={() => handleOptionSelect(questionIndex, option.score)}
+                  >
+                    {option.label}
+                  </button>
                 ))}
               </div>
             </div>
           ))}
           <button 
             type="submit" 
-            className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors"
-            style={{fontFamily: 'Arial, sans-serif'}}
+            style={{
+              backgroundColor: '#3B82F6',
+              color: 'white',
+              padding: '12px 24px',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              transition: 'background-color 0.3s',
+            }}
           >
             Submit
           </button>

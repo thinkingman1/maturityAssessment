@@ -19,13 +19,15 @@ const ResultCard = ({ scores, questions }) => {
   return (
     <div className="mt-8 bg-white shadow-lg p-6 rounded-lg">
       <div className="mb-4">
-        <h2 className="text-2xl font-bold text-indigo-800">Results</h2>
+        <h2 className="text-2xl font-bold">Results</h2>
       </div>
       <div>
         <p className="mb-2 text-lg">Total Score: {totalScore} / {maxScore}</p>
-        <p className="mb-4 text-xl font-semibold text-indigo-700">Maturity Level: {maturityLevel}</p>
-        <h3 className="text-lg font-semibold mb-2 text-indigo-600">Score Distribution</h3>
-        <ScorePieChart scores={scores} />
+        <p className="mb-4 text-xl font-semibold">Maturity Level: {maturityLevel}</p>
+        <h3 className="text-lg font-semibold mb-2">Score Distribution</h3>
+        <div className="mt-2">
+          <ScorePieChart scores={scores} />
+        </div>
       </div>
     </div>
   );
