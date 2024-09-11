@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <main style={{fontFamily: 'Arial, sans-serif', maxWidth: '800px', margin: '0 auto', padding: '20px'}}>
       <ProgressBar progress={progress} />
-      <h1 style={{fontSize: '24px', fontWeight: 'bold', marginBottom: '20px', marginTop: '48px'}}>Maturity Model Assessment</h1>
+      <h1 style={{fontSize: '24px', fontWeight: 'bold', marginBottom: '20px', marginTop: '48px', textAlign: 'center'}}>Maturity Model Assessment</h1>
       
       {allQuestions.length > 0 ? (
         <form onSubmit={handleSubmit}>

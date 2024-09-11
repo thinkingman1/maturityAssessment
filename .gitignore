@@ -4,7 +4,7 @@ node_modules
 node_modules/@next/swc-darwin-arm64/next-swc.darwin-arm64.node
 
 # Ignore .env files (if applicable)
-.env
+.env.local
 
 # Ignore build directories (for Next.js or other projects)
 .next
