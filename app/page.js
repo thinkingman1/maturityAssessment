@@ -10,6 +10,23 @@ export default function Home() {
   const [progress, setProgress] = useState(0);
 
   const allQuestions = questions.flatMap(category => category.questions);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
+  const handleNext = () => {
+    if (currentQuestionIndex < allQuestions.length - 1) {
+      setCurrentQuestionIndex(prevIndex => prevIndex + 1);
+    } else {
+      setShowResults(true);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(prevIndex => prevIndex - 1);
+    }
+  };
+
+  const currentQuestion = allQuestions[currentQuestionIndex];
 
   useEffect(() => {
     const answeredQuestions = Object.keys(scores).length;
