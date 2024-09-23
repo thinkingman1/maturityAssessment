@@ -18,35 +18,37 @@ const OptionButton = ({ option, isSelected, onClick }) => (
 
 const QuestionCard = ({ categoryIndex, questionIndex, question, handleScoreChange }) => {
   return (
-    <Card className="mb-4 bg-white shadow-md">
-      <CardHeader>
-        <h3 className="text-lg font-semibold text-indigo-600">
-          Question {categoryIndex + 1}.{questionIndex + 1}: {question.question}
-        </h3>
-      </CardHeader>
-      <CardContent>
-        <RadioGroup onValueChange={(value) => handleScoreChange(categoryIndex, questionIndex, parseInt(value))}>
-          <div className="flex space-x-4">
-            {question.options.map((option, idx) => (
-              <div key={idx} className="flex-1">
-                <RadioGroupItem
-                  value={option.score.toString()}
-                  id={`q${categoryIndex}-${questionIndex}-option${idx}`}
-                  className="sr-only"
-                />
-                <Label
-                  htmlFor={`q${categoryIndex}-${questionIndex}-option${idx}`}
-                  className="flex items-center justify-center h-20 p-4 text-center border rounded-lg cursor-pointer hover:bg-gray-100"
-                  style={{ width: '100px', height: '100px', border: '1px solid red' }}
-                >
-                  {option.label}
-                </Label>
-              </div>
-            ))}
-          </div>
-        </RadioGroup>
-      </CardContent>
-    </Card>
+    <div className="flex flex-row space-x-4"> {/* Changed to horizontal layout */}
+      <Card className="flex-1 bg-white shadow-md">
+        <CardHeader>
+          <h3 className="text-lg font-semibold text-indigo-600">
+            Question {categoryIndex + 1}.{questionIndex + 1}: {question.question}
+          </h3>
+        </CardHeader>
+        <CardContent>
+          <RadioGroup onValueChange={(value) => handleScoreChange(categoryIndex, questionIndex, parseInt(value))}>
+            <div className="flex flex-row space-x-4">
+              {question.options.map((option, idx) => (
+                <div key={idx} className="flex-1">
+                  <RadioGroupItem
+                    value={option.score.toString()}
+                    id={`q${categoryIndex}-${questionIndex}-option${idx}`}
+                    className="sr-only"
+                  />
+                  <Label
+                    htmlFor={`q${categoryIndex}-${questionIndex}-option${idx}`}
+                    className="flex items-center justify-center h-20 p-4 text-center border rounded-lg cursor-pointer hover:bg-gray-100"
+                    style={{ width: '200px', height: '100px', border: '1px solid red' }}
+                  >
+                    {option.label}
+                  </Label>
+                </div>
+              ))}
+            </div>
+          </RadioGroup>
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 

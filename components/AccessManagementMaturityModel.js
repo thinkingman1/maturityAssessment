@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -34,16 +33,6 @@ const AccessManagementMaturityModel = () => {
     setError('');
   };
 
-  const calculateTotalScore = () => Object.values(scores).reduce((sum, score) => sum + score, 0);
-
-  const getMaturityLevel = (totalScore) => {
-    const maxScore = questions.reduce((sum, category) => sum + category.questions.length * 3, 0);
-    const percentage = (totalScore / maxScore) * 100;
-    if (percentage >= 80) return 'Advanced';
-    if (percentage >= 60) return 'Intermediate';
-    return 'Basic';
-  };
-
   const handleSubmit = () => {
     const totalQuestions = questions.reduce((sum, category) => sum + category.questions.length, 0);
     if (Object.keys(scores).length === totalQuestions) {
@@ -61,15 +50,17 @@ const AccessManagementMaturityModel = () => {
       {questions.map((category, categoryIndex) => (
         <div key={categoryIndex} className="mb-8">
           <h2 className="text-2xl font-semibold mb-4 text-indigo-700">{category.category}</h2>
-          {category.questions.map((q, questionIndex) => (
-            <QuestionCard
-              key={questionIndex}
-              categoryIndex={categoryIndex}
-              questionIndex={questionIndex}
-              question={q}
-              handleScoreChange={handleScoreChange}
-            />
-          ))}
+          <div className="flex flex-wrap justify-between"> {/* Adjusted for horizontal layout */}
+            {category.questions.map((q, questionIndex) => (
+              <QuestionCard
+                key={questionIndex}
+                categoryIndex={categoryIndex}
+                questionIndex={questionIndex}
+                question={q}
+                handleScoreChange={handleScoreChange}
+              />
+            ))}
+          </div>
         </div>
       ))}
       <Button onClick={handleSubmit} className="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white">

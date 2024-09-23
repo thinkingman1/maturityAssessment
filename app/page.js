@@ -10,24 +10,7 @@ export default function Home() {
   const [progress, setProgress] = useState(0);
 
   const allQuestions = questions.flatMap(category => category.questions);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-
-  const handleNext = () => {
-    if (currentQuestionIndex < allQuestions.length - 1) {
-      setCurrentQuestionIndex(prevIndex => prevIndex + 1);
-    } else {
-      setShowResults(true);
-    }
-  };
-
-  const handlePrevious = () => {
-    if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex(prevIndex => prevIndex - 1);
-    }
-  };
-
-  const currentQuestion = allQuestions[currentQuestionIndex];
-
+  
   useEffect(() => {
     const answeredQuestions = Object.keys(scores).length;
     const newProgress = (answeredQuestions / allQuestions.length) * 100;
@@ -53,34 +36,49 @@ export default function Home() {
       
       {allQuestions.length > 0 ? (
         <form onSubmit={handleSubmit}>
-          {allQuestions.map((q, questionIndex) => (
-            <div key={questionIndex} style={{marginBottom: '32px'}}>
-              <p style={{fontSize: '18px', fontWeight: 'bold', marginBottom: '16px'}}>
-                {questionIndex + 1}. {q.question}
-              </p>
-              <div style={{display: 'flex', flexDirection: 'column', gap: '8px'}}>
-                {q.options.map((option, optionIndex) => (
-                  <button 
-                    key={optionIndex}
-                    type="button"
-                    style={{
-                      width: '100%',
-                      textAlign: 'left',
-                      padding: '12px',
-                      borderRadius: '8px',
-                      cursor: 'pointer',
-                      transition: 'background-color 0.3s',
-                      backgroundColor: scores[questionIndex] === option.score ? '#3B82F6' : '#F3F4F6',
-                      color: scores[questionIndex] === option.score ? 'white' : 'black',
-                    }}
-                    onClick={() => handleOptionSelect(questionIndex, option.score)}
-                  >
-                    {option.label}
-                  </button>
-                ))}
+          <div style={{
+            display: 'flex', 
+            flexDirection: 'row', 
+            flexWrap: 'wrap', 
+            gap: '20px',
+            justifyContent: 'space-between',
+            marginBottom: '20px' // Added bottom margin for separation between rows
+          }}>
+            {allQuestions.map((q, questionIndex) => (
+              <div key={questionIndex} style={{
+                flex: '1 1 200px', // Adjust the flex basis as needed
+                padding: '10px', // Padding inside each question box
+                border: '1px solid #ccc', // Elegant light gray border
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)', // Soft shadow for depth
+                borderRadius: '8px', // Rounded corners
+              }}>
+                <p style={{fontSize: '18px', fontWeight: 'bold', marginBottom: '16px'}}>
+                  {questionIndex + 1}. {q.question}
+                </p>
+                <div style={{display: 'flex', flexDirection: 'column', gap: '8px'}}>
+                  {q.options.map((option, optionIndex) => (
+                    <button 
+                      key={optionIndex}
+                      type="button"
+                      style={{
+                        width: '100%',
+                        textAlign: 'left',
+                        padding: '12px',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        transition: 'background-color 0.3s',
+                        backgroundColor: scores[questionIndex] === option.score ? '#3B82F6' : '#F3F4F6',
+                        color: scores[questionIndex] === option.score ? 'white' : 'black',
+                      }}
+                      onClick={() => handleOptionSelect(questionIndex, option.score)}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
           <button 
             type="submit" 
             style={{
@@ -89,17 +87,9 @@ export default function Home() {
               padding: '12px 24px',
               borderRadius: '8px',
               cursor: 'pointer',
-              transition: 'background-color 0.3s',
-            }}
-          >
-            Submit
-          </button>
-        </form>
-      ) : (
-        <p>No questions available.</p>
-      )}
+              transition
+              : 'background-color 0.3s', }} > Submit </button> </form> ) : ( <p>No questions available.</p> )}
 
-      {showResults && <ResultCard scores={scores} questions={allQuestions} />}
-    </main>
-  );
-}
+{showResults && <ResultCard scores={scores} questions={allQuestions} />}
+</main>
+); }
