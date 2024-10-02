@@ -48,5 +48,9 @@ Please provide a structured recommendation for improving their access management
 
 4. Next Steps: Provide 3-5 concise, actionable steps the organization should take to improve their access management maturity.
 
-Keep each section brief and to the point.`;
+Keep each section brief and to the point.
+
+5. Last line in blue font: Connect Astranova labs for more information at info@astranovalabs.com or visit www.astranovalabs.com
+
+`; 
 }

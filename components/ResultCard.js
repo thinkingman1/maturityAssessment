@@ -69,13 +69,22 @@ const ResultCard = ({ scores, questions }) => {
         <div className="mt-2 mb-4">
           <ScorePieChart scores={scores} />
         </div>
-        <button 
-          onClick={handleFetchRecommendation}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
-          disabled={isLoading}
-        >
-          {isLoading ? 'Fetching...' : 'Fetch Recommendation'}
-        </button>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <button 
+            onClick={handleFetchRecommendation}
+            style={{
+              backgroundColor: '#3B82F6',
+              color: 'white',
+              padding: '12px 24px',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              transition: 'background-color 0.3s',
+            }} 
+            disabled={isLoading}
+          >
+            {isLoading ? 'Fetching...' : 'Fetch Recommendation'}
+          </button>
+        </div>
         {recommendation && (
           <div className="mt-4 p-4 bg-gray-100 rounded">
             <h4 className="font-semibold mb-2">Recommendation:</h4>

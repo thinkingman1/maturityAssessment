@@ -79,16 +79,25 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <button 
-            type="submit" 
-            style={{
-              backgroundColor: '#3B82F6',
-              color: 'white',
-              padding: '12px 24px',
-              borderRadius: '8px',
-              cursor: 'pointer',
-              transition
-              : 'background-color 0.3s', }} > Submit </button> </form> ) : ( <p>No questions available.</p> )}
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <button 
+              type="submit" 
+              style={{
+                backgroundColor: '#3B82F6',
+                color: 'white',
+                padding: '12px 24px',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                transition: 'background-color 0.3s',
+              }} 
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      ) : (
+        <p>No questions available.</p>
+      )}
 
 {showResults && <ResultCard scores={scores} questions={allQuestions} />}
 </main>
