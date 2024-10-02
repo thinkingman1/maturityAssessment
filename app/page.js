@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { questions } from '../components/questions';
 import ResultCard from '../components/ResultCard';
 import ProgressBar from '../components/ProgressBar';
+import Image from 'next/image';
 
 export default function Home() {
   const [scores, setScores] = useState({});
@@ -31,8 +32,11 @@ export default function Home() {
 
   return (
     <main style={{fontFamily: 'Arial, sans-serif', maxWidth: '800px', margin: '0 auto', padding: '20px'}}>
+      <div style={{display: 'flex', justifyContent: 'center', marginBottom: '20px'}}>
+        <Image src="/logo.png" alt="Logo" width={200} height={100} />
+      </div>
       <ProgressBar progress={progress} />
-      <h1 style={{fontSize: '24px', fontWeight: 'bold', marginBottom: '20px', marginTop: '48px', textAlign: 'center'}}>Maturity Model Assessment</h1>
+      <h1 style={{fontSize: '24px', fontWeight: 'bold', marginBottom: '20px', marginTop: '48px', textAlign: 'center'}}>Maturity Model Assessment for Digital Identities</h1>
       
       {allQuestions.length > 0 ? (
         <form onSubmit={handleSubmit}>
@@ -99,6 +103,7 @@ export default function Home() {
         <p>No questions available.</p>
       )}
 
-{showResults && <ResultCard scores={scores} questions={allQuestions} />}
-</main>
-); }
+      {showResults && <ResultCard scores={scores} questions={allQuestions} />}
+    </main>
+  );
+}
